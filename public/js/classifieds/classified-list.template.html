@@ -1,75 +1,87 @@
-<div class="main">
-
-    <button ng-click="sort ='created_at'">Posting Date</button>
-    <button ng-click="sort ='price'">Price</button>
-
-    <input type="search" name="search" ng-model="search" id="search">
+<div class="container">
+  <h1 class= "center">SellYourStuff.com</h1>
+  <form>
+<div class="form-group">
+  <input type="search" class="form-control" name="search" placeholder="Search" ng-model="search" id="search" height="15px">
+</div>
+<div class="form-group">
+    <button class="orderby" ng-click="sort ='created_at'">Posting Date</button>
+    <button class="orderby" ng-click="sort ='price'">Price</button>
+  </div>
+</form>
     <div ng-repeat="classified in $ctrl.classifieds | filter: search | orderBy: sort " class="container">
-        <div>
-          <h3>{{classified.title}}</h3>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="panel-title">{{classified.title}}</div>
+          </div>
+          <div class="panel-body">
+
             <img ng-src="{{classified.item_image}}" height="300px" width="300px" class="media" alt="image item">
         </div>
         <div class="headline">
             <p>{{classified.description}}</p>
             <p>Price {{classified.price}}$</p>
+            <div ng-if="classified.showEditForm === true" class="">
+              <fieldset class="form-style-2">
+                  <div class="col-md-8">
+                      <form name="updatePost" ng-submit="$ctrl.updatePost($ctrl.updateclassifieds)">
+                        <div>
+                          <label for="id">ID</label>
+                          <input ng-model="$ctrl.updateclassifieds.id" type="text" name="id" value="id" required>
+                        </div>
+                          <div>
+                              <label for="title">Title</label>
+                              <input ng-model="$ctrl.updateclassifieds.title" type="text" name="title" value="title">
+                          </div>
+                          <div>
+                              <label for="price">Price</label>
+                              <input ng-model="$ctrl.updateclassifieds.price" type="text" name="price" value="price">
+                          </div>
+                          <div>
+                              <label for="imgUrl">Image</label>
+                              <input ng-model="$ctrl.updateclassifieds.item_image" type="text" name="imgUrl" value="image url">
+                          </div>
+                          <div>
+                              <label for="description">Description</label>
+                              <input ng-model="$ctrl.updateclassifieds.description" type="text" name="description" value="description">
+                          </div>
+                          <div class="form-group">
+                              <button type="submit" id="updateButton">Update Post</button>
+                          </div>
+                      </form>
+                  </div>
+                </fieldset>
+            </div>
+            <button ng-click="$ctrl.onEditButton(classified)" class="orderby" type="button" name="updateClassified">Edit</button>
+            <button ng-click="$ctrl.deletePost(classified.id)" class="orderby" type="button" name="button">Delete</button>
         </div>
+      </div>
     </div>
     <div class="row">
-        <fieldset class="form-style-2">
-            <div class="col-md-8">
-                <form name="updatePost" ng-submit="$ctrl.updatePost($ctrl.updateclassifieds)">
-                    <label for="id">ID</label>
-                    <input ng-model="$ctrl.updateclassifieds.id" type="text" class="form-control" name="id" value="id" required>
-
-                    <div>
-                        <label for="title">Title</label>
-                        <input ng-model="$ctrl.updateclassifieds.title" type="text" name="title" value="title">
-                    </div>
-
-                    <div>
-                        <label for="description">Description</label>
-                        <input ng-model="$ctrl.updateclassifieds.description" type="text" name="description" value="description">
-                    </div>
-
-                    <div>
-                        <label for="price">Price</label>
-                        <input ng-model="$ctrl.updateclassifieds.price" type="text" name="price" value="price">
-                    </div>
-
-                    <div>
-                        <label for="imgUrl">Image</label>
-                        <input ng-model="$ctrl.updateclassifieds.item_image" type="text" name="imgUrl" value="image url">
-                    </div>
-
-                    <div class="form-group">
-                        <button type="submit">Update Post</button>
-                    </div>
-                </form>
-            </div>
-
             <div class="row">
-                <h3>delete post</h3>
-                <form name="deletePost" ng-submit="$ctrl.deletePost($ctrl.deleteclassifieds)">
-                    <label for="id">id</label>
-                    <input ng-model="$ctrl.deleteclassifieds.id" type="text" name="id" value="id">
-                    <button type="submit" name="button">Delete post</button>
-                </form>
-            </div>
-            <div class="row">
-                <h3>new post!</h3>
+              <fieldset>
+                <h3>Want to Sell your stuff? Add it below!</h3>
                 <form name="newPost" ng-submit="$ctrl.newPost($ctrl.newclassifieds)">
+                  <div>
                     <label for="title">title</label>
                     <input ng-model="$ctrl.newclassifieds.title" type="text" name="title" value="title">
-                    <label for="description">description</label>
-                    <input ng-model="$ctrl.newclassifieds.description" type="text" name="description" value="description">
+                  </div>
+
+                  <div>
                     <label for="price">price</label>
                     <input ng-model="$ctrl.newclassifieds.price" type="text" name="price" value="price">
+                  </div>
+                  <div>
                     <label for="imgUrl">image</label>
                     <input ng-model="$ctrl.newclassifieds.item_image" type="text" name="imgUrl" value="image url">
+                  </div>
+                  <div>
+                    <label for="description">description</label>
+                    <input ng-model="$ctrl.newclassifieds.description" type="text" name="description" value="description">
+                  </div>
                     <button type="submit">Add new post</button>
                 </form>
             </div>
         </fieldset>
-
     </div>
 </div>

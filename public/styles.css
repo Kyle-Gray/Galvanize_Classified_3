@@ -1,3 +1,56 @@
 .main{
-  margin-left: 10px;
+  /*margin-left: 10px;*/
+  background-color: grey;
+}
+
+body{
+  background-color: grey;
+}
+
+.container{
+  padding-left: 0 !important;
+}
+.row {
+  margin-left:0px !important;
+}
+
+.headline{
+  margin-left: 5px;
+}
+.orderby{
+  background: lightgrey;
+  border: none;
+  color: black;
+  font-size: 18px;
+}
+
+.form-group{
+  /*margin-left: 27px;*/
+}
+
+#updateButton {
+    background: #498CE8;
+    margin-top: 10px;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+}
+#updateButton:hover {
+    background: green;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+}
+
+#deleteButton {
+    background: #498CE8;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+}
+#deleteButton:hover {
+    background: green;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
 }
